@@ -1,12 +1,16 @@
 ﻿#include <cstdio>
 #include <iostream>
 #include <limits>
+#include "problem.h"
+#include "solver.h"
 
-#define DEBUG_VALUES true
+
+#define DEBUG_VALUES false
 
 int main()
 {
 	//Постановка задачи
+	std::cin;
 	std::cout << "Введите порядок ДУ:\n";
 	int order;
 	while (true)
@@ -30,5 +34,7 @@ int main()
 			break;
 		}
 	}
+	Solver* solver = new Solver(new Problem(0));
+	std::cin;
     return 0;
 }
