@@ -34,6 +34,11 @@ int main()
 			break;
 		}
 	}
+
+	double *a = new double[degree+1];
+	double *A = new double[degree+1];
+
+	std::cout << "Введите коэффициенты:" << std::endl;
 	Problem problem = Problem(order);
 	Solver solver = Solver(problem);
 	std::cin;
