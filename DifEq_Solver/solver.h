@@ -3,5 +3,5 @@
 class Solver
 {
 public:
-    Solver(Problem* problem); //constructor
+    Solver(Problem problem); //constructor
 };

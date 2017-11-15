@@ -4,25 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        { 
-            "name": "(gdb) Attach",
-            "type": "cppdbg",
-            "request": "attach",
-            "program": "/home/user/bolotin/DifEq_Solver/DifEq_Solver/a.out",
-            "processId": "${command:pickProcess}",
-            "MIMode": "gdb"
-        },
+
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/user/bolotin/DifEq_Solver/DifEq_Solver/a.out",
+            "program": "/home/user/bolotin/DifEq_Solver/DifEq_Solver/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "preLaunchTask": "build main.cpp with g++",
-            "externalConsole": false,
+            "preLaunchTask": "Makefile",
+            "externalConsole": true,
             "MIMode": "gdb",
             "setupCommands": [
                 {

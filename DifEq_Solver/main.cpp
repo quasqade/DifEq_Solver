@@ -34,7 +34,8 @@ int main()
 			break;
 		}
 	}
-	Solver* solver = new Solver(new Problem(0));
+	Problem problem = Problem(order);
+	Solver solver = Solver(problem);
 	std::cin;
-    return 0;
+	return 1;
 }

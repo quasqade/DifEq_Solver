@@ -1,6 +1,7 @@
 #include "solver.h"
+#include <iostream>
 
-Solver::Solver(Problem* problem)
+Solver::Solver(Problem problem)
 {
-    cout << "Solver created" << endl;
+    std::cout << "Solver created" << std::endl;
 }

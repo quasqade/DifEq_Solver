@@ -1,6 +1,7 @@
 #include "problem.h"
+#include <iostream>
 
 Problem::Problem(int degree)
 {
-    cout << "Created Problem" << endl;
+    std::cout << "Created Problem" << std::endl;
 }
