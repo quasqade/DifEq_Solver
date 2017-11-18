@@ -2,6 +2,14 @@
 #include <iostream>
 #include <cmath>
 
+Problem::Problem(const Problem& problem)
+{
+    a=problem.a;
+    A=problem.A;
+    c=problem.c;
+    C=problem.C;
+    m=problem.m;
+}
 
 
 Problem::Problem(int order, std::vector<double> a, std::vector<double> A)
@@ -67,12 +75,17 @@ switch (parameter)
         return c;
         break;
     case 'C':
-        return c;
+        return C;
         break;
     case 'm':
         return m;
         break;
 }
+}
+
+int Problem::get_order()
+{
+return order;
 }
 
 Problem::~Problem()

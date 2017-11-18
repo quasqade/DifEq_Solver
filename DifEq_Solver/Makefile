@@ -3,7 +3,7 @@ COMPILER=g++
 #Compiler arguments
 CFLAGS=-c -g -Wall
 LDFLAGS=
-SOURCES=main.cpp problem.cpp solver.cpp
+SOURCES=main.cpp problem.cpp solver.cpp control.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
 
