@@ -3,6 +3,7 @@
 #include <limits>
 #include "problem.h"
 #include "solver.h"
+#include <vector>
 
 
 #define DEBUG_VALUES false
@@ -28,6 +29,7 @@ int main()
 		{
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
+			std::cout << "Неверный порядок!" << std::endl;
 		}
 		else
 		{
@@ -35,12 +37,54 @@ int main()
 		}
 	}
 
-	double *a = new double[degree+1];
-	double *A = new double[degree+1];
+	std::vector<double> a(order+1);
+	std::vector<double> A(order+1);
 
 	std::cout << "Введите коэффициенты:" << std::endl;
-	Problem problem = Problem(order);
+
+	for (int i = 0; i < order+1; ++i)
+	{
+		while (true)
+		{
+			std::cout << "a" << i << " = ";
+			std::cin >> a[i];
+
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
+					std::cout << "Коэффициент должен быть числом с плавающей точкой!" << std::endl;
+				}
+				else
+				{
+					break;
+				}
+		}
+	}
+	for (int i = 0; i < order+1; ++i)
+	{
+		while (true)
+		{
+			std::cout << "A" << i << " = ";
+			std::cin >> A[i];
+
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
+					std::cout << "Коэффициент должен быть числом с плавающей точкой!" << std::endl;
+				}
+				else
+				{
+					break;
+				}
+		}
+	}
+
+
+
+	Problem problem = Problem(order, a, A);
 	Solver solver = Solver(problem);
 	std::cin;
-	return 1;
+	return 0;
 }

@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cstdio": "cpp",
+        "iostream": "cpp",
+        "cmath": "cpp",
+        "initializer_list": "cpp"
+    }
+}

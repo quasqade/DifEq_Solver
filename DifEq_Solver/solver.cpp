@@ -3,5 +3,6 @@
 
 Solver::Solver(Problem problem)
 {
+    this->problem = problem;
     std::cout << "Solver created" << std::endl;
 }

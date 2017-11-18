@@ -1,14 +1,22 @@
 {
     "version": "2.0.0",
     "command": "make",
-    "isShellCommand": true,
+    "type":"shell",
     "tasks": [
         {
-            "taskName": "Makefile",
+            "label": "Makefile",
             // Make this the default build command.
-            "isBuildCommand": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             // Show the output window only if unrecognized errors occur.
-            "showOutput": "always",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             // No args
             "args": ["all"],
             // Use the standard less compilation problem matcher.

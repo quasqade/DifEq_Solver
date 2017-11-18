@@ -1,20 +1,28 @@
 #pragma once
+#include <vector>
+
+//задача
 class Problem
 {
-    static int order; //Порядок ур-ия
+private:
+    int order; //Порядок ур-ия
 
-    static double *a;
-    static double *c;
+    std::vector<double> a, A, c, C, m; //параметры
+    void initializec();
+    void initializeC();
+    void initializem();
+
 
 public:
     void set_parameter(int); //Установка параметра степени уравнения
 	void set_parameter(char, double *&); //Установка параметров a или c
 
-	//virtual double *get_parameter(char *variable) = 0; //Почучение параметров (либо-либо): степень уравнения, a, c
-	double get_parameter(char *variable, int); //Почучение параметра: a[i] или c[i]
+    std::vector<double> get_parameter(char parameter);
 
-    Problem(int degree);
-	~Problem() {};
+    Problem(int order, std::vector<double> a, std::vector<double> A); 
+    ~Problem();
+
+    void printA();
 
 	//friend statement;
 };
