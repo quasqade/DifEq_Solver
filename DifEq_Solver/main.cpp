@@ -4,6 +4,7 @@
 #include "solver.h"
 #include "render.h"
 #include <vector>
+#include <string>
 
 
 #define DEBUG_VALUES false
@@ -159,7 +160,16 @@ int main()
 	Problem problem = Problem(order, a, A);
 	Solver solver = Solver(&problem);
 	std::vector<point> solution = solver.solve(IC, dt, (Control)command);
-	Render::plot(solution);
+	Render render = Render();
+	//render.plot(solution);
+
+
+	//вывод результата
+	std::cout << "Введите имя файла для сохранения результата: ";
+	std::string filename;
+	std::cin >> filename;
+	render.to_file(filename, solution);
+	render.gnuplot(filename);
 	int i;
 	std::cin >> i;
 	return 0;

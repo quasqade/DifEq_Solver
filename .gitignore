@@ -259,3 +259,11 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+DifEq_Solver/gnuplot.png
+DifEq_Solver/main
+DifEq_Solver/main.o
+DifEq_Solver/render.o
+DifEq_Solver/result.csv
+DifEq_Solver/control.o
+DifEq_Solver/problem.o
+DifEq_Solver/solver.o

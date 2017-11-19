@@ -1,25 +1,34 @@
 #include "render.h"
 #include <iostream>
-
-void Render::plot(std::vector<point> points)
+#include <fstream>
+void Render::to_file(const std::string& filename, std::vector<point> points)
 {
-    //окно
-    SDL_Window* window = NULL;
-
-    //поверхность
-    SDL_Surface* windowSurface = NULL;
-
-    //инициализация SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    std::ofstream outfile;
+    outfile.open(filename);
+    for (int i = 0; i < points.size(); i++)
     {
-        std::cout << "Could not initalize SDL! Error: " << SDL_GetError() << std::endl;
+        outfile << points.at(i).time << "," << points.at(i).value << std::endl;
     }
-    else
-    {
-        window = SDL_CreateWindow("График решения", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if (window == NULL)
-        {
-            std::cout << "Could not create SDL window! Error: " << SDL_GetError() << std::endl;
-        }
-    }
+    outfile.close();
+}
+
+void Render::gnuplot(const std::string& filename)
+{
+//create gnuplot script
+std::ofstream script("gnuplot.script");
+script << "set datafile separator \",\"" << std::endl;
+script << "set title 'Solution'" << std::endl;
+script << "set ylabel 'y'" << std::endl;
+script << "set xlabel 't'" << std::endl;
+script << "set grid" << std::endl;
+script << "set terminal x11" << std::endl;
+script << "set output" << std::endl;
+script << "plot '" << filename << "'" << std::endl;
+script.close();
+
+//run gnuplot script
+system("gnuplot -p gnuplot.script");
+
+//delete gnuplot script
+std::remove("gnuplot.script");
 }

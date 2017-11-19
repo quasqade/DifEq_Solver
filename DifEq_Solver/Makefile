@@ -1,8 +1,8 @@
 #Compiler to user
 COMPILER=g++
 #Compiler arguments
-CFLAGS=-c -g -Wall -I/usr/include/SDL2
-LDFLAGS=-lSDL2
+CFLAGS=-c -g -Wall
+LDFLAGS=
 SOURCES=main.cpp problem.cpp solver.cpp control.cpp render.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
