@@ -1,8 +1,8 @@
-﻿#include <cstdio>
-#include <iostream>
+﻿#include <iostream>
 #include <limits>
 #include "problem.h"
 #include "solver.h"
+#include "render.h"
 #include <vector>
 
 
@@ -158,7 +158,8 @@ int main()
 
 	Problem problem = Problem(order, a, A);
 	Solver solver = Solver(&problem);
-	solver.solve(IC, dt, (Control)command);
+	std::vector<point> solution = solver.solve(IC, dt, (Control)command);
+	Render::plot(solution);
 	int i;
 	std::cin >> i;
 	return 0;

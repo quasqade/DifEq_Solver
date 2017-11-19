@@ -34,7 +34,8 @@
                 "/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed",
                 "/usr/include/x86_64-linux-gnu",
                 "/usr/include",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "/usr/include/SDL2"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",

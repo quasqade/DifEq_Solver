@@ -11,7 +11,6 @@ class Solver
 private:
     Problem* problem; //указатель на условия задачи
     point make_point(double time, double value); //функция создаёт и возвращает точку, чтобы не плодить временные переменные
-
 public:
     Solver(Problem* p); //constructor
 

@@ -36,6 +36,7 @@ std::vector<point> Solver::solve(std::vector<double> IC, double dt, Control cont
             control_function = &control_heavyside;
             break;
         default:
+            control_function = &control_none;
             std::cout << "Cannot set control function!" << std::endl;
     }
 
@@ -59,6 +60,35 @@ std::vector<point> Solver::solve(std::vector<double> IC, double dt, Control cont
     }
 
     result.push_back(make_point(0, IC[0] + control_function(0)));
+
+
+    //Метод Эйлера
+    const int AMOUNT_OF_POINTS = 999;
+    double t = dt;
+    for (int count = 1; count < AMOUNT_OF_POINTS; count++, t+=dt)
+    {
+        double k1, k2, k3, k4;
+        std::vector<double> temp_x(order);
+        for (int i = 0; i < order; i++)
+        {
+            k1 = B[i]*control_function(t);
+            k2 = k1;
+            k3 = k1;
+            k4 = k1;
+
+            for (int j = 0; j < order; j++)
+            {
+                k1 += A[i][j] * x[j];
+                k2 += A[i][j] * (x[j] + (dt/2)*k1);
+                k3 += A[i][j] * (x[j] + (dt/2)*k2);
+                k4 += A[i][j] * (x[j] + dt*k3);
+            }
+
+            temp_x[i] = x[i] + (dt/6) * (k1 + 2*k2 + 2*k3 + k4);
+        }
+        x = temp_x;
+        result.push_back(make_point(t, x[0] + control_function(t)));
+    }
 
     return result;
 }
