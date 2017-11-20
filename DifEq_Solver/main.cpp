@@ -6,9 +6,6 @@
 #include <vector>
 #include <string>
 
-
-#define DEBUG_VALUES false
-
 int main()
 {
 	//Постановка задачи
@@ -17,15 +14,7 @@ int main()
 	int order;
 	while (true)
 	{
-		if (DEBUG_VALUES)
-		{
-			order = 1;
-		}
-		else
-		{
-			std::cin >> order;
-		}
-		
+		std::cin >> order;
 		if (std::cin.fail())
 		{
 			std::cin.clear();
@@ -84,9 +73,9 @@ int main()
 
 
 	//Параметры решения
-	std::vector<double> IC(order);
-	double dt;
-	int command;
+	std::vector<double> IC(order); //начальные условия
+	double dt; //шаг интегрирования
+	int command; //индекс управляющего воздействия
 
 	std::cout << "Введите параметры решения:" << std::endl;
 
@@ -157,20 +146,21 @@ int main()
 			}
 	}
 
-	Problem problem = Problem(order, a, A);
-	Solver solver = Solver(&problem);
-	std::vector<point> solution = solver.solve(IC, dt, (Control)command);
-	Render render = Render();
-	//render.plot(solution);
+	
+	//Запуск решения
+	Problem problem = Problem(order, a, A); //создание задачи
+	Solver solver = Solver(&problem);  //передача задачи решателю
+	std::vector<point> solution = solver.solve(IC, dt, (Control)command); //решение задачи с выбранными параметрами
 
 
-	//вывод результата
+	//Вывод результата
+	Render render = Render(); //создание объекта вывода
 	std::cout << "Введите имя файла для сохранения результата: ";
 	std::string filename;
 	std::cin >> filename;
-	render.to_file(filename, solution);
-	render.gnuplot(filename);
-	int i;
-	std::cin >> i;
+	render.to_file(filename, solution, (Control)command); //вывод в файл
+	render.gnuplot(filename); //вывод в gnuplot
+	std::cout << "Нажмите Enter чтобы завершить работу...";
+	std::cin.get();
 	return 0;
 }

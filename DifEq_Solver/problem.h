@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-//задача
+//Класс задачи
 class Problem
 {
 private:
@@ -14,12 +14,9 @@ private:
 
 
 public:
-    std::vector<double> get_parameter(char parameter);
-    int get_order();
+    std::vector<double> get_parameter(char parameter); //функция возвращает параметр, указанный в аргументе
+    int get_order(); //функция возвращает порядок уравнения
 
     Problem(int order, std::vector<double> a, std::vector<double> A); //обычный конструктор
-    Problem(const Problem& problem); //конструктор копии для передачи по значению
     ~Problem(); //деструктор
-
-    void printA(); //временная хуйня
 };

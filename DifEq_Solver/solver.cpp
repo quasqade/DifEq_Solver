@@ -1,17 +1,15 @@
 #include "solver.h"
-#include "control.h"
 #include <iostream>
 
-Solver::Solver(Problem* p) //initalization list 
+Solver::Solver(Problem* p)
 {
     this->problem = p;
-    std::cout << "Created a Solver" << std::endl;
 }
 
 std::vector<point> Solver::solve(std::vector<double> IC, double dt, Control control)
 {
 
-    //входные параметры
+    //переписываем параметры в локальные переменные, чтобы упростить обращение
     std::vector<double> a = problem->get_parameter('a');
     std::vector<double> C = problem->get_parameter('C');
     std::vector<double> m = problem->get_parameter('m');
@@ -40,7 +38,7 @@ std::vector<point> Solver::solve(std::vector<double> IC, double dt, Control cont
             std::cout << "Cannot set control function!" << std::endl;
     }
 
-
+    //временные переменные для расчетов
     std::vector<double> x = IC;
     std::vector<std::vector<double>>A(order, std::vector<double>(order, 0));
     std::vector<double> B(order);
@@ -62,7 +60,7 @@ std::vector<point> Solver::solve(std::vector<double> IC, double dt, Control cont
     result.push_back(make_point(0, IC[0] + control_function(0)));
 
 
-    //Метод Эйлера
+    //Метод Рунге-Кутты 4 порядка
     const int AMOUNT_OF_POINTS = 999;
     double t = dt;
     for (int count = 1; count < AMOUNT_OF_POINTS; count++, t+=dt)

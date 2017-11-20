@@ -2,15 +2,6 @@
 #include <iostream>
 #include <cmath>
 
-Problem::Problem(const Problem& problem)
-{
-    a=problem.a;
-    A=problem.A;
-    c=problem.c;
-    C=problem.C;
-    m=problem.m;
-}
-
 
 Problem::Problem(int order, std::vector<double> a, std::vector<double> A)
 {
@@ -20,7 +11,6 @@ Problem::Problem(int order, std::vector<double> a, std::vector<double> A)
     initializec();
     initializeC();
     initializem();
-    std::cout << "Created Problem" << std::endl;
 }
 
 void Problem::initializec()
@@ -32,15 +22,6 @@ void Problem::initializec()
     c.push_back(sqrt(A.at(2)));
 }
 
-void Problem::printA()
-{
-    std::cout << "Printing A:" << std::endl;
-    for (int i = 0; i < A.size(); i++)
-    {
-        std::cout << A[i] << std::endl;
-    }
-}
-
 void Problem::initializeC()
 {
     C.reserve(order);
@@ -48,7 +29,6 @@ void Problem::initializeC()
     {
         C.push_back(c.at(i) / c.at(order));
     }
-    std::cout << "fuck";
 }
 
 void Problem::initializem()
@@ -58,7 +38,6 @@ void Problem::initializem()
     {
         m.push_back(1 - (a.at(order-i)/(C.at(i)*a.at(0))));
     }
-    std::cout << "fuck";
 }
 
 std::vector<double> Problem::get_parameter(char parameter)
@@ -86,9 +65,4 @@ switch (parameter)
 int Problem::get_order()
 {
 return order;
-}
-
-Problem::~Problem()
-{
-    //TODO
 }
