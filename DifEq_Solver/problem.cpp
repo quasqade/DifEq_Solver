@@ -13,6 +13,11 @@ Problem::Problem(int order, std::vector<double> a, std::vector<double> A)
     initializem();
 }
 
+Problem::~Problem()
+{
+    
+}
+
 void Problem::initializec()
 {
     c.reserve(order+1);

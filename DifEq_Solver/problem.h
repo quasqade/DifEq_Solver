@@ -17,6 +17,7 @@ public:
     std::vector<double> get_parameter(char parameter); //функция возвращает параметр, указанный в аргументе
     int get_order(); //функция возвращает порядок уравнения
 
-    Problem(int order, std::vector<double> a, std::vector<double> A); //обычный конструктор
-    ~Problem(); //деструктор
+    Problem(int order, std::vector<double> a, std::vector<double> A); //конструктор
+    ~Problem();
+
 };

@@ -6,6 +6,11 @@ Solver::Solver(Problem* p)
     this->problem = p;
 }
 
+Solver::~Solver()
+{
+    
+}
+
 std::vector<point> Solver::solve(std::vector<double> IC, double dt, Control control)
 {
 
